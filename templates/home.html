@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+{#    <link rel="stylesheet" href="/static/css/home.css">#}
+    <link rel="stylesheet" href="/static/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <script src="/static/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1 class="text-center">网易云音乐直连</h1>
+            <form method="post">
+                <div class="form-group">
+                    <label for="id_musicname">用户名</label>
+                    <input type="text" name="musicname" id="id_musicname" class="form-control">
+                </div>
+{#                    <input type="button" id="id_commit" class="btn btn-primary" >#}
+{#                <submit class="btn btn-primary form-control" >搜索</submit>#}
+                <div>
+                    <input class="btn-primary form-control" type="submit" value="提交" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div>
+                {% if res %}
+    {#                <p>{{ res }}</p>#}
+                    <ol>
+                    {% for music in res.values() %}
+                            <li>
+                                <p>音乐名称：{{ music.name }}</p>
+                                <span name="{{ music.index }}">音乐地址：<a href="{{ music.url }}">点我播放</a></span>
+                            </li>
+                    {% endfor %}
+                    </ol>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $("#name").click(function (){
+        window.open($(this).next());
+    })
+    console.log($("#name").next().text())
+</script>
+</html>
